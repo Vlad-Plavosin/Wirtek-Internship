@@ -1,0 +1,29 @@
+﻿@page "/teamleader/edit/{Id:int}"
+@using WBizTrip.Client.Services.Abstractions
+@inject ITeamLeaderService TeamLeaderService
+@inject NavigationManager NavigationManager
+@inject HttpClient httpClient
+@using WBizTrip.Domain.Enums
+@using WBizTrip.Domain.Utils
+@attribute [AuthorizeEnum(UserRole.HR)]
+
+<CardTemplate>
+	<cardHead>
+		<h1 class="boldFont mt-3 mx-auto">Edit Team Leader</h1>
+	</cardHead>
+	<cardBody>
+		<EditForm class="mx-auto d-flex justify-content-center flex-column" Model="@teamLeaderDto" OnValidSubmit="@HandleSubmit">
+			<DataAnnotationsValidator />
+			<ValidationSummary />
+			<div class="mb-3 inputs">
+				<label class="form-label" for="team">Team:</label>
+				<InputText id="team" @bind-Value="teamLeaderDto.Team" class="form-control" />
+			</div>
+			<div class="d-flex justify-content-between mt-3 text-center">
+				<button class="btn btn-lg costume-button mx-auto" @onclick=" (async ()=> await HandleSubmit())">Submit</button>
+				<a href="/manage-teamleaders" class="cancel-button">Cancel</a>
+			</div>
+		</EditForm>
+	</cardBody>
+</CardTemplate>
+

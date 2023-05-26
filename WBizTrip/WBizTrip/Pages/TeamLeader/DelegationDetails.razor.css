@@ -1,0 +1,78 @@
+﻿.oi-clock {
+    color: rgb(86, 86, 86);
+    font-size: 32px;
+}
+
+.oi-circle-check {
+    color: green;
+    font-size: 32px;
+}
+
+.oi-circle-x {
+    color: rgb(215, 72, 71);
+    font-size: 32px;
+}
+
+.card {
+    width: 45rem;
+}
+
+span {
+    vertical-align: middle;
+}
+
+    span.badge.bg-secondary.pending-sug {
+        background-color: #FDB913 !important;
+        border-radius: 20px !important;
+        height: 25px !important;
+        text-align: center !important;
+        width: 80px !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+
+    span.badge.bg-secondary.approved-sug {
+        background-color: #B9D747 !important;
+        border-radius: 20px !important;
+        height: 25px !important;
+        text-align: center !important;
+        width: 80px !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+
+    span.badge.bg-secondary.rejected-sug {
+        background-color: #D74847 !important;
+        border-radius: 20px !important;
+        height: 25px !important;
+        text-align: center !important;
+        width: 80px !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+
+    span.badge.bg-secondary.chosen-sug {
+        background-color: #49b39c !important;
+        border-radius: 20px !important;
+        height: 25px !important;
+        text-align: center !important;
+        width: 80px !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+
+.check {
+    color: rgb(80, 230, 80);
+    height: 36px;
+    width: 36px;
+}
+
+.noborder {
+    outline: none;
+    background: transparent;
+    border: 1px solid transparent;
+}
+
+.costume-button {
+    padding-top: 10px;
+}

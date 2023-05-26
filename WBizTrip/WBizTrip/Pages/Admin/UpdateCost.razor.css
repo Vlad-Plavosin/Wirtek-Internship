@@ -1,0 +1,66 @@
+﻿
+.info-msg,
+.success-msg,
+.warning-msg,
+.error-msg {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.info-msg {
+    color: #059;
+    background-color: #BEF;
+}
+
+.success-msg {
+    color: #270;
+    background-color: #DFF2BF;
+}
+
+.warning-msg {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+
+.error-msg {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+
+html {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    margin: 25px;
+}
+
+body {
+    width: 640px;
+}
+
+.oi-circle-x {
+    color: rgb(215, 72, 71);
+    font-size: 25px;
+}
+
+.img-fluid {
+    margin-left: 20px;
+    margin-top: -10px;
+}
+
+.inputs {
+    width: 45vh;
+}
+
+.cancel-button {
+    color: white;
+    background: rgb(86, 86, 86);
+    box-shadow: 0 5px 20px rgb(0 0 0 / 16%);
+    border-radius: 62px;
+    height: 46px !important;
+    width: 149px !important;
+    padding-top: 8px;
+    text-decoration: none;
+    font-size: 20px;
+    margin-left: 37px;
+}

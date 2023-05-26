@@ -1,0 +1,103 @@
+﻿@page "/create-delegation"
+@using WBizTrip.Client.Services.Abstractions
+@using WBizTrip.Domain.Enums
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@attribute [AuthorizeEnum(UserRole.TeamLeader)]
+@using WBizTrip.Domain.Utils
+@using WBizTrip.Domain.Enums
+@inject AuthenticationStateProvider authStateProvider
+@inject Client.Services.Abstractions.IClientService ClientService
+@inject Client.Services.Abstractions.ITeamLeaderService TeamLeaderService
+@inject ILocalStorageService LocalStorage
+
+<CardTemplate>
+	<cardHead>
+		<h1 class="mt-3 boldFont mx-auto">Request Delegation</h1>
+	</cardHead>
+	<cardBody>
+	@if (loading)
+	{
+			<div class="spinner-border mx-auto" role="status">
+				<span class="visually-hidden">Loading...</span>
+			</div>
+	}
+	else
+	{
+		<EditForm class="mx-auto d-grid justify-content-center flex-column gap-1" Model="@newTrip" OnValidSubmit="HandleSubmit">
+			<div class="row">
+				<div class="col-6">
+					<div class="mb-3 inputs">
+						<label class="form-label" for="name">Name:</label>
+						<InputText id="name" @bind-Value="newTrip.Name" class="form-control" />
+					</div>
+					<div class="mb-3 inputs">
+						<label class="form-label" for="location">Location:</label>
+						<InputText id="location" @bind-Value="newTrip.Location" class="form-control" />
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Starting Date:</label>
+						<RadzenDatePicker @bind-Value=@newTrip.StartDate Change=@(args => OnStartingDateChange(args)) DateFormat="d" />
+					</div>
+						<div class="mb-3 inputs">
+						<label class="form-label" for="name">Ending Date:</label>
+						<RadzenDatePicker @bind-Value=@newTrip.EndDate DateFormat="d"/>
+					</div>
+					<div class="mb-3 inputs">
+						<label class="form-label" for="localTransport">Local Transport:</label>
+						<select class="form-control" @bind="@newTrip.LocalTransportType" id="localTransport">
+							<option value="@LocalTransportType.Bus"> Bus </option>
+							<option value="@LocalTransportType.RentalCar"> Rental Car </option>
+						</select>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="mb-3 inputs">
+						<label class="form-label" for="clients">Client:</label>
+						<select class="form-control" @bind="@newTrip.ClientId">
+							@foreach (var client in clients)
+							{
+								@if (client != null)
+								{
+									<option value="@client.Id"> @client.Name </option>
+								}
+							}
+						</select>
+					</div>
+					<div class="mb-3 inputs">
+						<label class="form-label" for="plane">Plane Passengers:</label>
+						<InputNumber @bind-Value="newTrip.FlightPassengers" id="plane" class="form-control" />
+						<ValidationMessage For="@(() => newTrip.FlightPassengers)" />
+					</div>
+					<div class="mb-3 inputs">
+						<label class="form-label" for="train">Train Passengers:</label>
+						<InputNumber @bind-Value="newTrip.TrainPassengers" id="train" class="form-control" />
+						<ValidationMessage For="@(() => newTrip.TrainPassengers)" />
+					</div>
+					<div class="mb-3 inputs">
+						<label class="form-label" for="bus">Bus Passengers:</label>
+						<InputNumber @bind-Value="newTrip.BusPassengers" id="bus" class="form-control" />
+						<ValidationMessage For="@(() => newTrip.BusPassengers)" />
+					</div>
+					<div class="mb-3 inputs">
+						<label class="form-label" for="car">Car Passengers:</label>
+						<InputNumber @bind-Value="newTrip.CarPassengers" id="car" class="form-control" />
+						<ValidationMessage For="@(() => newTrip.CarPassengers)" />
+					</div>
+					
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-6 text-center">
+						<button type="submit" class="btn btn-lg costume-button me-5" @onclick=" (async ()=> await HandleSubmit())">Create</button>
+				</div>
+				<div class="col-6 text-center">
+					<a href="/teamleader/home" class="btn cancel-button me-5">Cancel</a>
+				</div>
+			</div>
+			<DataAnnotationsValidator />
+		</EditForm>
+	}
+	</cardBody>
+</CardTemplate>

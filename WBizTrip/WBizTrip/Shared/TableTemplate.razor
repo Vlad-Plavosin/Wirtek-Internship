@@ -1,0 +1,20 @@
+﻿@typeparam TItem
+
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                @TableHeader
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Items)
+            {
+                <tr>
+                    @RowTemplate(item)
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

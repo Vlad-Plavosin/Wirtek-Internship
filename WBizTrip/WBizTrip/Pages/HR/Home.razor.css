@@ -1,0 +1,64 @@
+﻿span.badge.bg-secondary.new {
+    border-radius: 20px !important;
+    height: 25px !important;
+    text-align: center !important;
+    width: 80px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+span.badge.bg-secondary.pending {
+    border-radius: 20px !important;
+    height: 25px !important;
+    text-align: center !important;
+    width: 80px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+span.badge.bg-secondary.approved {
+    border-radius: 20px !important;
+    height: 25px !important;
+    text-align: center !important;
+    width: 80px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+span.badge.bg-secondary.declined {
+    border-radius: 20px !important;
+    height: 25px !important;
+    text-align: center !important;
+    width: 80px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+span.badge.bg-secondary.request-change {
+    border-radius: 20px !important;
+    height: 21px !important;
+    text-align: center !important;
+    width: 80px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+span.badge.bg-secondary.finished {
+    border-radius: 20px !important;
+    height: 25px !important;
+    text-align: center !important;
+    width: 80px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.detail-button {
+    color: white;
+    background: #2a2a2a;
+    border-color: white;
+    border-radius: 62px;
+    height: fit-content !important;
+    width: 149px !important;
+    vertical-align: middle;
+    text-decoration: none !important;
+}

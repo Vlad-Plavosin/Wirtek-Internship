@@ -1,0 +1,26 @@
+﻿@page "/form-example-1"
+@using Microsoft.Extensions.Logging
+
+<EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="name" @bind-Value="exampleModel.Name" />
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    public class ExampleModel {
+        public string Name { get; set; }
+    }
+
+    private ExampleModel exampleModel = new();
+
+    private void HandleValidSubmit()
+    {
+        Console.Write(exampleModel.Name);
+
+        // Process the valid form
+    }
+}

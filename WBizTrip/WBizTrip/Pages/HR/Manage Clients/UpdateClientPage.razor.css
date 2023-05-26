@@ -1,0 +1,25 @@
+﻿.card {
+    width: 20rem;
+}
+
+.img-fluid {
+    margin-left: 36px;
+    margin-top: -70px;
+}
+
+.inputs {
+    width: 45vh;
+}
+
+.cancel-button {
+    color: white;
+    background: rgb(86, 86, 86);
+    box-shadow: 0 5px 20px rgb(0 0 0 / 16%);
+    border-radius: 62px;
+    height: 46px !important;
+    width: 149px !important;
+    padding-top: 8px;
+    text-decoration: none;
+    font-size: 20px;
+    margin-left: 37px;
+}

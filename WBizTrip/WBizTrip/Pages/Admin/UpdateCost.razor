@@ -1,0 +1,71 @@
+﻿@page "/admin/delegation/{TripId:int}/{TripSuggestionId:int}/update-cost"
+@using WBizTrip.Client.Services.Abstractions
+@inject ITripSuggestionService TripSuggestionService
+@inject ITripService TripService
+@inject NavigationManager NavigationManager
+@inject IJSRuntime Js;
+	
+<CardTemplate>
+	<cardHead>
+		<h1 class="mt-3 fw-bold mx-auto">Update delegation costs</h1>
+		@if (tripSuggestionDto.RequestedChanges != "")
+			{
+			<div class="col-6 offset-3">
+				<div class="error-msg">
+					<i class="oi oi-circle-x"></i>
+				@tripSuggestionDto.RequestedChanges
+				</div>
+			</div>
+			}
+			else
+			{
+			<div class="col-6 offset-3">
+				<div class="warning-msg">
+					<i class="oi oi-bookmark"></i>
+				There is no message left. You should rethink the suggestion.
+				</div>
+			</div>
+			
+		}
+	</cardHead>
+	<cardBody>
+		<div class="row">
+			<div class="col-6">
+				<img src="images/people3.png" class="img-fluid" alt="" />
+			</div>
+			<div class="col-6">
+				<EditForm class="mx-auto d-grid justify-content-center flex-column gap-1" Model="@tripSuggestionDto" OnValidSubmit="@HandleSubmit">
+			<DataAnnotationsValidator />
+			<div class="mb-2 inputs">
+				<label class="form-label" for="transportInfo">Transport Info:</label>
+				<InputText id="transportInfo" @bind-Value="tripSuggestionDto.TransportInfo" class="form-control" />
+			</div>
+			<div class="mb-2 inputs">
+				<label class="form-label" for="transportBudget">Transport Budget:</label>
+				<InputNumber id="transportBudget" @bind-Value="tripSuggestionDto.TransportBudget" class="form-control" />
+				<ValidationMessage For="@(() => tripSuggestionDto.TransportBudget)" />
+			</div>
+			<div class="mb-2 inputs">
+				<label class="form-label" for="accommodationInfo">Accommodation Info:</label>
+				<InputText id="accommodationInfo" @bind-Value="tripSuggestionDto.AccommodationInfo" class="form-control" />
+			</div>
+			<div class="mb-2 inputs">
+				<label class="form-label" for="accommodationBudget">Accommodation Budget:</label>
+				<InputNumber id="accommodationBudget" @bind-Value="tripSuggestionDto.AccommodationBudget" class="form-control" />
+				<ValidationMessage For="@(() => tripSuggestionDto.AccommodationBudget)" />
+			</div>
+			<div class="mb-2 inputs">
+				<label class="form-label" for="foodBudget">Food Budget:</label>
+				<InputNumber id="foodBudget" @bind-Value="tripSuggestionDto.FoodBudget" class="form-control" />
+				<ValidationMessage For="@(() => tripSuggestionDto.FoodBudget)" />
+			</div>
+			<div class="text-center">
+						<button class="btn btn-lg costume-button mx-auto" type="submit" @onclick=" (async ()=> await HandleSubmit())">Update</button>
+				<a href="/admin/delegation/@TripId" class="btn cancel-button">Cancel</a>
+			</div>
+			</EditForm>
+			</div>
+		</div>
+	</cardBody>
+</CardTemplate>
+

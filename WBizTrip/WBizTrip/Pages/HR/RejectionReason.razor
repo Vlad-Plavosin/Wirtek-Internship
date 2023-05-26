@@ -1,0 +1,34 @@
+﻿@page "/hr/delegation/{TripId:int}/rejection/{TripSuggestionId:int}"
+@using WBizTrip.Client.Services.Abstractions
+@inject ITripSuggestionService TripSuggestionService
+@inject NavigationManager NavigationManager
+@inject IJSRuntime Js;
+@using WBizTrip.Domain.Enums
+@using WBizTrip.Domain.Utils
+@attribute [AuthorizeEnum(UserRole.HR)]
+
+<CardTemplate>
+	<cardHead>
+		<h1 class="mt-3 boldFont mx-auto">Rejection reason</h1>
+	</cardHead>
+	<cardBody>
+		<div class="row">
+			<div class="col-6 offset-3">
+				<EditForm Model="@RequestedChanges" OnValidSubmit="HandleSubmit">
+					<DataAnnotationsValidator />
+					<ValidationSummary />
+
+					<div>
+						<label class="form-label" for="rejectionReason">Specify the reasons why you rejected this suggestion for costs:</label>
+						<InputText class="form-control" id="rejectionReason" @bind-Value="RequestedChanges" />
+					</div>
+
+					<div class="pt-3 text-center">
+						<button type="submit" class="btn btn-lg costume-button"  @onclick=" (async ()=> await HandleSubmit())">Submit</button>
+						<button @onclick="() => CancelChange()" class="btn cancel-button">Back</button>
+					</div>
+				</EditForm>	
+			</div>
+		</div>	
+	</cardBody>
+</CardTemplate>

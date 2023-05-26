@@ -1,0 +1,115 @@
+﻿@page "/teamleader/home"
+@using WBizTrip.Client.Services.Abstractions
+@using WBizTrip.Domain.Enums
+@using WBizTrip.Domain.Utils
+@inject ITripService TripService
+@inject ILocalStorageService LocalStorage
+@inject AuthenticationStateProvider authStateProvider
+@attribute [AuthorizeEnum(UserRole.TeamLeader)]
+
+<CardTemplate>
+	<cardHead>
+		<h1 class="mt-3 mx-auto boldFont">Welcome,</h1>
+		<h1 class="boldFont">@username!</h1>
+	</cardHead>
+	<cardBody>
+		<div>
+			<a href="/create-delegation" class="btn costume-button my-3">Create Delegation</a>
+		</div>
+		<h2 class="mb-3">Delegation requests:</h2>
+		@if (trips == null)
+		{
+			<div class="d-flex justify-content-center mb-2">
+				Please wait while we retrieve all delegations. Thank you!
+			</div>
+			<div class="d-flex justify-content-center">
+				<div class="spinner-border" role="status">
+					<span class="visually-hidden">Loading...</span>
+				</div>
+			</div>
+		}
+		else
+		{
+			<TableTemplate Items="trips" Context="trip">
+				<TableHeader>
+					<th scope="col" class="boldFont col-2">Title</th>
+					<th scope="col" class="boldFont">Start Date</th>
+					<th scope="col" class="boldFont">End Date</th>
+					<th scope="col" class="boldFont col-2">Location</th>
+					<th scope="col" class="boldFont">Status</th>
+					<th></th>
+				</TableHeader>
+				<RowTemplate>
+					@if (trip.Id < (index + itemsPerPage) && trip.Id >= index)
+					{
+						<td>@trip.Name</td>
+						<td>@trip.StartDate.ToShortDateString()</td>
+						<td>@trip.EndDate.ToShortDateString()</td>
+						<td>@trip.Location</td>
+						<td>
+							@switch (trip.Status)
+							{
+								case StatusVariants.New:
+									<span class="badge bg-secondary new ms-2 m-auto pt-1">@trip.Status</span>
+									break;
+								case StatusVariants.Pending:
+									<span class="badge bg-secondary pending ms-2 m-auto pt-1">@trip.Status</span>
+									break;
+								case StatusVariants.Approved:
+									<span class="badge bg-secondary approved ms-2 m-auto pt-1">@trip.Status</span>
+									break;
+								case StatusVariants.Declined:
+									<span class="badge bg-secondary declined ms-2 m-auto pt-1">@trip.Status</span>
+									break;
+								case StatusVariants.RequestedChange:
+									<span class="badge bg-secondary request-change ms-2 m-auto pt-1">Change</span>
+									break;
+								case StatusVariants.Finished:
+									<span class="badge bg-secondary finished ms-2 m-auto pt-1">@trip.Status</span>
+									break;
+
+							}
+						</td>
+						<td><a href="/teamleader/delegation/@trip.Id" class="btn detail-button">More Details</a></td>
+					}
+				</RowTemplate>
+		</TableTemplate>
+		}
+		<ul class="pagination d-flex justify-content-center mt-3">
+
+
+			@if (index != 1)
+			{
+				<li class="page-item">
+					<button class="page-link" @onclick="() => ChangeIndex(index-itemsPerPage)">❮</button>
+				</li>
+			}
+			else
+			{
+				<li class="page-item disabled">
+					<button class="page-link">❮</button>
+				</li>
+			}
+
+
+			<li class="page-item">
+				<span class="page-link" href="#">@(index / itemsPerPage + 1)</span>
+			</li>
+
+
+			@if ((trips.Count() - index) >= itemsPerPage)
+			{
+				<li class="page-item">
+					<button class="page-link" @onclick="() => ChangeIndex(index+itemsPerPage)">❯</button>
+				</li>
+			}
+			else
+			{
+				<li class="page-item disabled">
+					<button class="page-link">❯</button>
+				</li>
+			}
+
+		</ul>
+	</cardBody>
+</CardTemplate>

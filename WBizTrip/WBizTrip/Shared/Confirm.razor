@@ -1,0 +1,18 @@
+﻿@if (ShowConfirmation) {
+	<div class="modal show d-block" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header b-0">
+					<h5>@ConfirmationTitle</h5>
+				</div>
+				<div class="modal-body text-center">
+					@ConfirmationMessage
+				</div>
+				<div class="modal-footer d-flex justify-content-evenly">
+					<button type="button" class="cancel-button" data-dismiss="modal" @onclick="() => OnConfirmationChange(false)">Cancel</button>
+					<button type="button" class="btn costume-button" @onclick="() => OnConfirmationChange(true)">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+}

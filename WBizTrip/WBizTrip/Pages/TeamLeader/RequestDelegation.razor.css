@@ -1,0 +1,19 @@
+﻿.card {
+    width: 25rem;
+}
+
+.inputs {
+    width: 45vh;
+}
+
+.cancel-button {
+    color: white;
+    background: rgb(86, 86, 86);
+    box-shadow: 0 5px 20px rgb(0 0 0 / 16%);
+    border-radius: 62px;
+    height: 46px !important;
+    width: 149px !important;
+    padding-top: 8px;
+    text-decoration: none;
+    font-size: 20px;
+}

@@ -1,0 +1,56 @@
+﻿@page "/"
+@inject HttpClient Http
+@inject AuthenticationStateProvider authStateProvider
+@inject ILocalStorageService LocalStorage
+@inject NavigationManager NavManager
+@layout LoginLayout
+@inject ILocalStorageService LocalStorage
+
+<html lang="en">
+<body class="text-center">
+  
+    <main class="form-signin w-50 m-auto ">
+        
+        <EditForm Model="@user" class=" initial-form " OnSubmit="HandleLogin">
+            <DataAnnotationsValidator />
+        
+           
+            <div class="form-logo">
+                <img class="wirtek-image" src="https://www.wirtek.com/hs-fs/hubfs/wirtek-favicon.png?width=108&height=108" alt="" width="100" height="100">
+            </div>
+
+            <div data-dom-node="true" class="container-form-data m-auto">
+                <div class="container-form-data-border">
+
+                    <div class="actual-form m-auto">
+                        <div class="container-signin">
+                            <h1 class="h2 mb-3 fw-light" style="padding:15px">Sign in</h1>
+                        </div>
+                        <div class="form-to-complete">
+                            <InputText  @bind-Value="user.Email" class="form-control" id="floatingInput" placeholder="name@example.com" />
+                            <label for="floatingInput"></label>
+                        </div>
+
+                        <div class="form-to-complete">
+                            <InputText type="password" @bind-Value="user.Password" class="form-control" id="floatingPassword" placeholder="password" />
+                            <label for="floatingPassword"></label>
+                        </div>
+                        
+                        <button type="submit" class="login-button btn btn-primary" @onclick=" (async ()=> await HandleLogin())">Sign in</button>
+                        <div class="warning-message">
+                            @if (LastSubmitResult != null)
+                            {
+                                @LastSubmitResult  
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                </EditForm>
+
+    </main>
+
+</body>
+</html>
+

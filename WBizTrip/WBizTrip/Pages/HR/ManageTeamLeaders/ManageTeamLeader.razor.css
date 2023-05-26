@@ -1,0 +1,27 @@
+﻿.pencil {
+    color: rgb(86, 86, 86);
+    height: 24px;
+    width: 24px;
+}
+
+.trash {
+    color: rgb(215, 72, 71);
+    height: 24px;
+    width: 24px;
+}
+
+button, button:focus {
+    outline: none;
+    background: transparent;
+    border: 1px solid transparent;
+}
+
+    button:active {
+        outline: none;
+        background: transparent;
+        border: 1px solid grey;
+    }
+
+.costume-button {
+    padding-top: 10px;
+}

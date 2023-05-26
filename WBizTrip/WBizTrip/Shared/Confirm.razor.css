@@ -1,0 +1,9 @@
+﻿.cancel-button {
+    color: white;
+    background: rgb(86, 86, 86);
+    box-shadow: 0 5px 20px rgb(0 0 0 / 16%);
+    border-radius: 62px;
+    border-color: rgb(86, 86, 86);
+    height: 46px !important;
+    width: 149px !important;
+}

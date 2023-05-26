@@ -1,0 +1,59 @@
+﻿@page "/update-client/{Id:int}"
+@using WBizTrip.Client.Services.Abstractions
+@using WBizTrip.Domain.Model
+@inject HttpClient Http
+@inject NavigationManager NavigationManager 
+@inject ITeamLeaderService TeamLeaderService
+@using WBizTrip.Domain.Enums
+@using WBizTrip.Domain.Utils
+@attribute [AuthorizeEnum(UserRole.HR)]
+
+<CardTemplate>
+	<cardHead>
+		<h1 class="boldFont mt-3 mx-auto">Edit Client</h1>
+	</cardHead>
+	<cardBody>
+		<div class="row">
+			<div class="col-6">
+				<img src="images/people2.png" class="img-fluid" alt="" />
+			</div>
+			<div class="col-6">
+				<EditForm class="mx-auto d-grid justify-content-center flex-column gap-1" Model="@client" OnValidSubmit="@(async () => await HandleSubmit(Id))">
+					<DataAnnotationsValidator />
+
+					<div class="mb-2 inputs">
+						<label class="form-label" for="phone">Phone number:</label>
+						<InputText id="phone" @bind-Value="client.PhoneNumber" class="form-control"  />
+						<ValidationMessage For="@(() => client.PhoneNumber)" />
+					</div>
+					<div class="mb-2 inputs">
+						<label class="form-label" for="address">Address:</label>
+						<InputText id="address" @bind-Value="client.Address" class="form-control" />
+					</div>
+					<div class="mb-2 inputs">
+						<label class="form-label" for="annualBudget">Annual budget:</label>
+						<InputNumber id="annualBudget" @bind-Value="client.AnnualBudget" class="form-control" />
+						<ValidationMessage For="@(() => client.AnnualBudget)" />
+					</div>
+					<div class="mb-2 inputs">
+						<label class="form-label" for="teamleaders">Team Leader:</label>
+						<InputSelect id="teamleaders" class="form-control" @bind-Value="@client.TeamLeaderId">
+							@foreach (var teamLeader in teamLeaders)
+							{
+								@if (teamLeader != null)
+								{
+									<option value="@teamLeader.Id"> @teamLeader.Name </option>
+								}
+							}
+						</InputSelect>
+					</div>
+					<div class="d-flex justify-content-between mt-3 text-center">
+						<button @onclick="(async () => await HandleSubmit(Id))" type="submit" class="btn btn-lg costume-button">Submit</button>
+						<a href="/manage-clients" class="btn cancel-button">Cancel</a>
+					</div>
+				</EditForm>
+			</div>
+		</div>
+	</cardBody>
+</CardTemplate>
+

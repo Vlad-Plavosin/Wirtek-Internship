@@ -1,0 +1,79 @@
+﻿@inject ILocalStorageService LocalStorage
+@inject HttpClient Http
+@inject AuthenticationStateProvider authStateProvider
+@inject NavigationManager NavManager
+
+<nav class="navbar navbar-expand-md bg-white sticky-top mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href=""><img src="https://www.wirtek.com/hs-fs/hubfs/logo-animated-resized.gif?width=132&amp;name=logo-animated-resized.gif" class="hs-image-widget " style="width:132px;border-width:0px;border:0px;" width="132" alt="" title="" srcset="https://www.wirtek.com/hs-fs/hubfs/logo-animated-resized.gif?width=66&amp;name=logo-animated-resized.gif 66w, https://www.wirtek.com/hs-fs/hubfs/logo-animated-resized.gif?width=132&amp;name=logo-animated-resized.gif 132w, https://www.wirtek.com/hs-fs/hubfs/logo-animated-resized.gif?width=198&amp;name=logo-animated-resized.gif 198w, https://www.wirtek.com/hs-fs/hubfs/logo-animated-resized.gif?width=264&amp;name=logo-animated-resized.gif 264w, https://www.wirtek.com/hs-fs/hubfs/logo-animated-resized.gif?width=330&amp;name=logo-animated-resized.gif 330w, https://www.wirtek.com/hs-fs/hubfs/logo-animated-resized.gif?width=396&amp;name=logo-animated-resized.gif 396w" sizes="(max-width: 132px) 100vw, 132px"></a>
+        <button class="navbar-toggler @NavButtonCssClass" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-label="Toggle navigation" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse @NavBarCssClass" id="navbarCollapse" @onclick="ToggleNavMenu">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                @if (role == "HR")
+                {
+                    <li class="nav-item mx-3">
+                        <NavLink class="nav-link fs-5 newFont" href="hr/home">
+                             Home
+                        </NavLink>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <NavLink class="nav-link fs-5 newFont" href="manage-clients">
+                             Manage Clients
+                        </NavLink>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <NavLink class="nav-link fs-5 newFont" href="manage-teamleaders">
+                             Manage Team Leaders
+                        </NavLink>
+                    </li>
+                    
+                }
+                @if (role == "TeamLeader")
+                {
+                    <li class="nav-item mx-3">
+                        <NavLink class="nav-link fs-5 newFont" href="teamleader/home">
+                             Home
+                        </NavLink>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <NavLink class="nav-link fs-5 newFont" href="create-delegation">
+                             Create Delegation
+                        </NavLink>
+                    </li>
+                }
+                @if (role == "Admin")
+                {
+                    <li class="nav-item mx-3">
+                        <NavLink class="nav-link fs-5 newFont" href="admin/home">
+                            Home
+                        </NavLink>
+                    </li>
+                }
+                
+            </ul>
+            <ul class="ml-auto mb-2 mb-md-0">
+                <li class="nav-item navbar-nav">
+                    <NavLink class="nav-link fs-5" href="pricing">
+                            <img src="/Images/crown.png" alt="crown"/>
+                        </NavLink>
+                    </li>
+            </ul>
+        </div>
+        <RadzenProfileMenu Click="@(args => OnProfileMenuClick(args))">
+            <Template>
+                <RadzenGravatar Email=@email>
+                </RadzenGravatar>
+            </Template>
+            <ChildContent>
+                <div class="mx-auto d-grid justify-content-center flex-column text-center">
+                    <span class="mx-3 mt-2 boldFont">@name</span>
+                    <span class="mx-3 boldFont">@role</span>
+                </div>
+                <RadzenProfileMenuItem Value="logout" Text="Logout" Path="/" Style="margin-bottom: -5px;"></RadzenProfileMenuItem>
+            </ChildContent>
+        </RadzenProfileMenu>
+    </div>
+</nav>
